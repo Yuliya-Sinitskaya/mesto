@@ -23,3 +23,12 @@ function closePopup() {
 closeButton.addEventListener('click', function() {
   closePopup(popup);
 });
+
+function handleFormSubmit (evt) {
+  evt.preventDefault();
+  profileName.textContent = nameInput.value;
+  profileDescription.textContent = infoInput.value;
+  closePopup(popup);
+}
+
+popup.addEventListener('submit', handleProfileFormSubmit);
