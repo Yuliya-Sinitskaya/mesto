@@ -1,4 +1,18 @@
 .header {
   box-sizing: border-box;
   border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 908px) {
+  .header {
+    max-width: 582px;
+  }
+}
+
+@media screen and (max-width: 596px) {
+  .header {
+    max-width: 100%;
+  }
 }
