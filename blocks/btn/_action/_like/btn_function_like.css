@@ -1,0 +1,13 @@
+.btn_action_like {
+  width: 22px;
+  height: 19px;
+  background-image: url(../../../../images/like-btn-icon.svg);
+  border: none;
+  box-sizing: border-box;
+  background-color: transparent;
+}
+
+.btn_action_like:hover {
+  opacity: 50%;
+  transition: 0.3s ease-in;
+} 

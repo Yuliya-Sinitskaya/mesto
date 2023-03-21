@@ -1,0 +1,12 @@
+.places-grid {
+  margin: 0 auto;
+  padding: 51px 0 0 0;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+@media screen and (max-width: 596px) {
+  .places-grid {
+    padding: 36px 0 0 0;
+  }
+}

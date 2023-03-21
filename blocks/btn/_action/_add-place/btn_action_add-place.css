@@ -1,0 +1,23 @@
+.btn_action_add-place {
+  width: 150px;
+  height: 50px;
+  border: 2px solid #FFFFFF;
+  background-color: #000;
+  border-radius: 2px;
+  color: #FFFFFF;
+  background: url(../../../../images/add-btn-icon.svg) center no-repeat;
+  background-size: 22px;
+}
+  
+.btn_action_add-place:hover {
+  opacity: 60%;
+  transition: 0.3s ease-in;
+}
+
+@media screen and (max-width: 908px) {
+  .btn_action_add-place {
+    margin: 36px 0 0 0;
+    background-size: 16px;
+    width: 100%;
+  }
+}

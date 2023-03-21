@@ -1,0 +1,11 @@
+.popup__input-label {
+  margin: 25px 0 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  width: 358px;
+}
+
+@media screen and (max-width: 524px) {
+  .popup__input-label {
+    width: 238px;
+  }
+}
