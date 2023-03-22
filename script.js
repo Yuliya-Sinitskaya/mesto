@@ -5,6 +5,7 @@ const popup = document.querySelector('.popup');
 const profileName = popup.querySelector('.profile__name');
 const profileDescription = popup.querySelector('profile__description');
 const closeButton = document.querySelector('.btn_action_close-popup');
+const saveButton = popup.querySelector('.btn_action_close-popup')
 
 function openPopup() {
   popup.classList.add('popup__opened');
@@ -31,4 +32,8 @@ function handleFormSubmit (evt) {
   closePopup(popup);
 }
 
-popup.addEventListener('submit', handleFormSubmit);
+closeButton.addEventListener('submit', function() {
+  handleFormSubmit();
+});
+
+closeButton.addEventListener('submit', handleFormSubmit);
