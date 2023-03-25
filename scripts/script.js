@@ -25,15 +25,13 @@ closeButton.addEventListener('click', function() {
   closePopup(popup);
 });
 
-function handleFormSubmit (evt) {
+function handleFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileDescription.textContent = infoInput.value;
   closePopup(popup);
 }
 
-saveButton.addEventListener('click', function(evt) {
+saveButton.addEventListener('click', function() {
   handleFormSubmit(evt);
 });
-
-saveButton.addEventListener('click', handleFormSubmit);
