@@ -3,7 +3,7 @@ const infoInput = document.querySelector('.popup__input_type_info');
 const editButton = document.querySelector('.btn_action_profile-edit');
 const popup = document.querySelector('.popup');
 const profileName = document.querySelector('.profile__name');
-const profileDescription = document.querySelector('profile__description');
+const profileDescription = document.querySelector('.profile__description');
 const closeButton = document.querySelector('.btn_action_close-popup');
 const saveButton = popup.querySelector('.btn_action_save-popup');
 
@@ -32,6 +32,6 @@ function handleFormSubmit(evt) {
   closePopup(popup);
 }
 
-saveButton.addEventListener('click', function() {
+saveButton.addEventListener('click', function(evt) {
   handleFormSubmit(evt);
 });

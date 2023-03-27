@@ -7,6 +7,7 @@
   background: url(../../../../images/edit-btn-icon.svg) center no-repeat;
   background-size: 10px 10px;
   box-sizing: border-box;
+  margin-top: 15px;
 }
 
 .btn_action_profile-edit:hover {
@@ -14,10 +15,11 @@
   transition: 0.3s ease-in;
 }
 
-@media screen and (max-width: 908px) {
+@media screen and (max-width: 596px) {
   .btn_action_profile-edit {
     width: 18px;
     height: 18px;
     background-size: 7.5px 7.5px;
+    margin-top: 9px;
   }
 }

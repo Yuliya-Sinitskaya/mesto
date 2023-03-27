@@ -17,7 +17,7 @@
 @media screen and (max-width: 908px) {
   .btn_action_add-place {
     width: 100%;
-    margin: 36px 19px 0;
     background-size: 16px;
-  }
+    margin-top: 36px;
+    }
 }
