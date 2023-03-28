@@ -7,7 +7,7 @@
   background: url(../../../../images/edit-btn-icon.svg) center no-repeat;
   background-size: 10px 10px;
   box-sizing: border-box;
-  margin-top: 15px;
+  margin: 15px 0 0 18px;
 }
 
 .btn_action_profile-edit:hover {
@@ -20,6 +20,6 @@
     width: 18px;
     height: 18px;
     background-size: 7.5px 7.5px;
-    margin-top: 9px;
+    margin: 8px 0 0 10px;
   }
 }
