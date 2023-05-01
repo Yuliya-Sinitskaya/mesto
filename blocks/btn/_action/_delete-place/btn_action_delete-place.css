@@ -1,0 +1,17 @@
+.btn_action_delete-place {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  box-sizing: border-box;
+  background-image: url(../../../../images/trash-icon.svg);
+  width: 18px;
+  height: 19px;
+  background-size: cover;
+  background-color: transparent;
+  border: none;
+}
+
+.btn_action_.btn_action_delete-place:hover {
+  opacity: 60%;
+  transition: 0.3s ease-in;
+}
