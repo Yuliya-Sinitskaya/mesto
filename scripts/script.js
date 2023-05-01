@@ -6,6 +6,7 @@ const profileName = document.querySelector('.profile__name');
 const profileDescription = document.querySelector('.profile__description');
 const closeButton = document.querySelector('.btn_action_close-popup');
 const saveButton = popup.querySelector('.btn_action_save-popup');
+const deleteButton = document.querySelector('.btn_action_delete-place');
 
 function openPopup() {
   popup.classList.add('popup__opened');
@@ -34,4 +35,10 @@ function handleFormSubmit(evt) {
 
 saveButton.addEventListener('click', function(evt) {
   handleFormSubmit(evt);
+});
+
+
+deleteButton.addEventListener('click', function(evt) {
+ const place = evt.target.closest('.place');
+ place.remove();
 });
