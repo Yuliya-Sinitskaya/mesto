@@ -37,7 +37,6 @@ saveButton.addEventListener('click', function(evt) {
   handleFormSubmit(evt);
 });
 
-
 deleteButton.addEventListener('click', function(evt) {
  const place = evt.target.closest('.place');
  place.remove();
