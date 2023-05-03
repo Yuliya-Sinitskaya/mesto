@@ -25,60 +25,11 @@
       <button class="btn btn_action_add-place" type="button" aria-label="Добавить место"></button>
     </section>
     <section class="places-grid">
-      <ul class="places-grid__container">
-        <li class="place">
-          <img src="./images/karachayevsk.jpg" class="place__img" alt="Карачаевск, Россия">
-          <div class="place__info">
-            <h2 class="place__heading">Карачаевск</h2>
-            <button class="btn btn_action_like" type="button" aria-label="Нравится"></button>
-          </div>
-          <button class="btn btn_action_delete-place" type="button" aria-label="Удалить"></button>
-        </li>
-        <li class="place">
-          <img src="./images/elbrus.jpg" class="place__img" alt="Эльбрус, Россия">
-          <div class="place__info">
-            <h2 class="place__heading">Гора Эльбрус</h2>
-            <button class="btn btn_action_like" type="button" aria-label="Нравится"></button>
-          </div>
-          <button class="btn btn_action_delete-place" type="button" aria-label="Удалить"></button>
-        </li>
-        <li class="place">
-          <img src="./images/dombay.jpg" class="place__img" alt="Домбай (курортный поселок)">
-          <div class="place__info">
-            <h2 class="place__heading">Домбай</h2>
-            <button class="btn btn_action_like" type="button" aria-label="Нравится"></button>
-          </div>
-          <button class="btn btn_action_delete-place" type="button" aria-label="Удалить"></button>
-        </li>
-        <li class="place">
-          <img src="./images/iceland-waterfall.jpg" class="place__img" alt="Эхсараурфосс, национальный парк Тингведлир">
-          <div class="place__info">
-            <h2 class="place__heading">Эхсараурфосс</h2>
-            <button class="btn btn_action_like" type="button" aria-label="Нравится"></button>
-          </div>
-          <button class="btn btn_action_delete-place" type="button" aria-label="Удалить"></button>
-        </li>
-        <li class="place">
-          <img src="./images/monte-rosa.jpg" class="place__img" alt="Монте-Роза, Швейцария">
-          <div class="place__info">
-            <h2 class="place__heading">Монте-Роза</h2>
-            <button class="btn btn_action_like" type="button" aria-label="Нравится"></button>
-          </div>
-          <button class="btn btn_action_delete-place" type="button" aria-label="Удалить"></button>
-        </li>
-        <li class="place">
-          <img src="./images/yangshuo.jpg" class="place__img" alt="Яншо, Китай">
-          <div class="place__info">
-            <h2 class="place__heading">Яншо</h2>
-            <button class="btn btn_action_like" type="button" aria-label="Нравится"></button>
-          </div>
-          <button class="btn btn_action_delete-place" type="button" aria-label="Удалить"></button>
-        </li>
-      </ul>
+      <ul class="places-grid__container"></ul>
     </section>
   </main>
   <footer class="footer">
-    <p class="footer__copyright">&#169; 2020 Mesto Russia</p>
+    <p class="footer__copyright">&#169 2023 Mesto Russia</p>
   </footer>
   <div class="popup">
     <div class="popup__container">
@@ -95,6 +46,18 @@
       <button class="btn btn_action_close-popup" type="button" aria-label="Закрыть"></button>
     </div>
   </div>
+  
+  <template id="card-template">
+    <li class="card">
+      <button class="btn btn_action_delete-card" type="button" aria-label="Удалить"></button>
+      <img src="#" class="card__img" alt="">
+      <div class="place__info">
+        <h2 class="card__heading"></h2>
+        <button class="btn btn_action_like" type="button" aria-label="Нравится"></button>
+      </div>
+    </li>
+  </template>
+
   <script src="./scripts/script.js"></script>
 </body>
 </html>

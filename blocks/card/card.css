@@ -1,6 +1,5 @@
-.place {
+.card {
   display: flex;
-  position: relative;
   flex-direction: column;
   position: relative;
   background-color: #fff;
