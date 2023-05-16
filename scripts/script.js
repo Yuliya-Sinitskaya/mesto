@@ -1,42 +1,72 @@
 const nameInput = document.querySelector('.popup__input_type_name');
 const infoInput = document.querySelector('.popup__input_type_info');
-const editButton = document.querySelector('.btn_action_profile-edit');
-const popup = document.querySelector('.popup');
+const editBtn = document.querySelector('.btn_action_profile-edit');
+const editProfilePopup = document.querySelector('.popup_type_profile-edit');
 const profileName = document.querySelector('.profile__name');
 const profileDescription = document.querySelector('.profile__description');
-const closeButton = document.querySelector('.btn_action_close-popup');
-const saveButton = popup.querySelector('.btn_action_save-popup');
+const profilePopupCloseBtn = document.querySelector('.btn_action_close-popup-profile');
+const saveButton = document.querySelector('.btn_action_save-popup');
+const profileSaveButton = document.querySelector('.btn_action_save-popup-profile');
+const addPlacePopup = document.querySelector('.popup_type_add-place');
+const placeInput = document.querySelector('.popup__input_type_place');
+const linkInput = document.querySelector('.popup__input_type_link');
+const addPlaceBtn = document.querySelector('.btn_action_add-place');
+const placePopupCloseBtn = document.querySelector('.btn_action_close-popup-place');
+const placeSaveButton = document.querySelector('.btn_action_save-popup-place');
 
-function openPopup() {
+function openPopup(popup) {
   popup.classList.add('popup__opened');
-  nameInput.value = profileName.textContent;
-  infoInput.value = profileDescription.textContent;
 };
 
-editButton.addEventListener('click', function() {
-  openPopup(popup);
-});
-
-function closePopup() {
+function closePopup(popup) {
   popup.classList.remove('popup__opened');
 };
 
-closeButton.addEventListener('click', function() {
-  closePopup(popup);
+profilePopupCloseBtn.addEventListener('click', (evt) => {
+  closePopup(editProfilePopup);
 });
 
-function handleFormSubmit(evt) {
+placePopupCloseBtn.addEventListener('click', (evt) => {
+  closePopup(addPlacePopup);
+});
+
+//попап редактирования профиля
+editBtn.addEventListener('click', () => {
+  openPopup(editProfilePopup);
+  nameInput.value = profileName.textContent;
+  infoInput.value = profileDescription.textContent;
+});
+
+function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileDescription.textContent = infoInput.value;
-  closePopup(popup);
-}
+  closePopup(editProfilePopup);
+};
 
-saveButton.addEventListener('click', function(evt) {
-  handleFormSubmit(evt);
+profileSaveButton.addEventListener('click', (evt) => {
+  handleProfileFormSubmit(evt);
 });
 
-//Набор карточек 
+editProfilePopup.addEventListener('submit',handleProfileFormSubmit);
+
+//попап добавления карточки
+addPlaceBtn.addEventListener('click', () => {
+  openPopup(addPlacePopup);
+});
+
+function handlePlaceFormSubmit(evt) {
+  evt.preventDefault();
+  renderCard(placeInput.value, linkInput.value);
+  closePopup(addPlacePopup);
+  evt.target.reset();
+}
+
+placeSaveButton.addEventListener('click', (evt) => {
+  handlePlaceFormSubmit(evt);
+});
+
+//Добавление карточек
 
 const initialCards = [
   {
@@ -71,25 +101,26 @@ const cardTemplate = document.querySelector('#card-template').content;
 
 //Создание карточки
 
-const createCard = (name, link) => {
+const createCard = (placeName, imageLink) => {
   const template = cardTemplate.querySelector('.card').cloneNode(true);
-  template.querySelector('.card__img').src = link;
-  template.querySelector('.card__heading').textContent = name;
-  template.querySelector('.card__img').alt = name;
+  template.querySelector('.card__img').src = imageLink;
+  template.querySelector('.card__heading').textContent = placeName;
+  template.querySelector('.card__img').alt = placeName;
   return template;
 }
 
-const templatesList = initialCards.map(({ name, link }) => 
-createCard(name, link));
+const templatesList = initialCards.map(({name: placeName, link: imageLink}) => 
+createCard(placeName, imageLink));
 
-const renderCard = (name, link) => {
-  cardsContainer.prepend(createCard(name, link));
+const renderCard = (placeName, imageLink) => {
+  cardsContainer.prepend(createCard(placeName, imageLink));
 };
 
 cardsContainer.prepend(...templatesList);
 
 //Удаление карточки
-
-document.querySelector('.btn_action_delete-card').addEventListener('click', function() {
-  document.querySelector('.card').remove();
-});
+const deleteCard = (evt) => {
+  evt.target.closest('.card').remove();
+}
+const deleteBtn = document.querySelector('.btn_action_delete-card');
+deleteBtn.addEventListener('click', deleteCard);
