@@ -15,7 +15,8 @@
 @import url(../blocks/btn/_action/_add-place/btn_action_add-place.css);
 @import url(../blocks/places-grid/places-grid.css);
 @import url(../blocks/places-grid/__container/places-grid__container.css);
-@import url(../blocks/btn/_action/_like/btn_function_like.css);
+@import url(../blocks/btn/_action/_like/btn_action_like.css);
+@import url(../blocks/btn/_action/_like-active/btn_action_like-active.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 @import url(../blocks/popup/popup.css);
@@ -28,7 +29,6 @@
 @import url(../blocks/btn/_action/_save-popup/btn_action_save-popup.css);
 @import url(../blocks/popup/__opened/popup__opened.css);
 @import url(../blocks/card/card.css);
-@import url(../blocks/card/card-template__element.css);
 @import url(../blocks/card/__img/card__img.css);
 @import url(../blocks/card/__info/card__info.css);
 @import url(../blocks/card/__heading/card__heading.css);

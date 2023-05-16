@@ -97,15 +97,27 @@ const initialCards = [
 
 
 const cardsContainer = document.querySelector('.places-grid__container');
-const cardTemplate = document.querySelector('#card-template').content;
+const cardTemplate = document.querySelector('#card-template');
 
 //Создание карточки
-
 const createCard = (placeName, imageLink) => {
-  const template = cardTemplate.querySelector('.card').cloneNode(true);
+  const template = cardTemplate.content.querySelector('.card').cloneNode(true);
   template.querySelector('.card__img').src = imageLink;
   template.querySelector('.card__heading').textContent = placeName;
   template.querySelector('.card__img').alt = placeName;
+
+//Удаление карточки
+  const deleteBtn = template.querySelector('.btn_action_delete-card');
+  deleteBtn.addEventListener('click', (evt) => {
+    evt.target.closest('.card').remove();
+  });
+
+//Лайк карточки
+  const likeCardBtn = template.querySelector('.btn_action_like');
+  likeCardBtn.addEventListener ('click', () => {
+    likeCardBtn.classList.toggle('btn_action_like-active');
+  });
+
   return template;
 }
 
@@ -117,10 +129,3 @@ const renderCard = (placeName, imageLink) => {
 };
 
 cardsContainer.prepend(...templatesList);
-
-//Удаление карточки
-const deleteCard = (evt) => {
-  evt.target.closest('.card').remove();
-}
-const deleteBtn = document.querySelector('.btn_action_delete-card');
-deleteBtn.addEventListener('click', deleteCard);
