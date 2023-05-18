@@ -31,7 +31,7 @@
   <footer class="footer">
     <p class="footer__copyright">&#169 2023 Mesto Russia</p>
   </footer>
-  <div class="popup popup_type_profile-edit">
+  <div class="popup popup__profile-edit">
     <div class="popup__container">
       <form class="popup__form" name="profile-form">
         <h2 class="popup__title">Редактировать профиль</h2>
@@ -41,12 +41,12 @@
         <label class="popup__input-label">
           <input class="popup__input popup__input_type_info" id="profile-info" type="text" name="info" placeholder="Исследователь океана" required>
         </label>
-        <button class="btn btn_action_save-popup btn_action_save-popup-profile">Сохранить</button>
+        <button class="btn btn_action_save-popup btn_action_save-popup-profile" type="button" aria-label="Сохранить">Сохранить</button>
       </form>
-      <button class="btn btn_action_close-popup btn_action_close-popup-profile"></button>
+      <button class="btn btn_action_close-popup btn_action_close-popup-profile" type="button" aria-label="Закрыть"></button>
     </div>
   </div>
-  <div class="popup popup_type_add-place">
+  <div class="popup popup__add-place">
     <div class="popup__container">
       <form class="popup__form" name="place-form">
         <h2 class="popup__title">Новое место</h2>
@@ -56,12 +56,18 @@
         <label class="popup__input-label">
           <input class="popup__input popup__input_type_link" type="url" name="link" placeholder="Ссылка на картинку" required>
         </label>
-        <button class="btn btn_action_save-popup btn_action_save-popup-place">Создать</button>
+        <button class="btn btn_action_save-popup btn_action_save-popup-place" type="button" aria-label="Создать">Создать</button>
       </form>
-      <button class="btn btn_action_close-popup btn_action_close-popup-place"></button>
+      <button class="btn btn_action_close-popup btn_action_close-popup-place" type="button" aria-label="Закрыть"></button>
     </div>
   </div>
-  
+  <div class="popup popup__place">
+    <div class="popup__container-place">
+      <img class="popup__place-img" src="#" alt="">
+      <h2 class="popup__place-heading"></h2>
+      <button class="btn btn_action_close-popup btn_action_close-popup-img" type="button" aria-label="Закрыть"></button>
+    </div>
+  </div>
   <template id="card-template">
     <li class="card">
       <button class="btn btn_action_delete-card" type="button" aria-label="Удалить"></button>
@@ -72,7 +78,6 @@
       </div>
     </li>
   </template>
-
   <script src="./scripts/script.js"></script>
 </body>
 </html>
