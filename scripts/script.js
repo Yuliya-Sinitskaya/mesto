@@ -14,6 +14,8 @@ const addPlaceBtn = document.querySelector('.btn_action_add-place');
 const addPlacePopupCloseBtn = document.querySelector('.btn_action_close-popup-place');
 const placeSaveButton = document.querySelector('.btn_action_save-popup-place');
 const imgPopup = document.querySelector('.popup_type_open-img');
+const imgPopupPhoto = imgPopup.querySelector('.popup__place-img');
+const imgPopupHeading = imgPopup.querySelector('.popup__place-heading');
 const placePopupCloseBtn = document.querySelector('.btn_action_close-popup-img');
 const cardsContainer = document.querySelector('.places-grid__container');
 const cardTemplate = document.querySelector('#card-template');
@@ -76,70 +78,41 @@ placeSaveButton.addEventListener('click', (evt) => {
 
 placeSaveButton.addEventListener('submit', handlePlaceFormSubmit);
 
-//Карточки для добавления
-const initialCards = [
-  {
-    name: 'Баган, Мьянма',
-    link: 'https://images.unsplash.com/photo-1556199859-0a5f16d962a8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
-  },
-  {
-    name: 'Ангкор-Ват, Камбоджа',
-    link: 'https://images.unsplash.com/photo-1644651051345-d642fc1fcbff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=848&q=80'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://images.unsplash.com/photo-1552735855-557bdba3961a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=689&q=80'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://images.unsplash.com/photo-1568028476727-0c86534220fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1631&q=80'
-  },
-  {
-    name: 'Долина Йосемити, США',
-    link: 'https://images.unsplash.com/photo-1569597408915-cb395eee98b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'
-  },
-  {
-    name: 'Река Ли, Китай',
-    link: 'https://images.unsplash.com/photo-1556880003-4fcd06418af3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'
-  }
-];
-
 //Создание карточки
-const createCard = (placeName, imageLink) => {
+const createCard = (cardData) => {
   const template = cardTemplate.content.querySelector('.card').cloneNode(true);
   const imgPlace = template.querySelector('.card__img');
-  imgPlace.src = imageLink;
-  template.querySelector('.card__heading').textContent = placeName;
-  imgPlace.alt = placeName;
-  imgPlace.addEventListener('click', () => openImgPopup(placeName, imageLink));
+  imgPlace.src = cardData.link;
+  template.querySelector('.card__heading').textContent = cardData.name;
+  imgPlace.alt = cardData.name;
 
-//Удаление карточки
-  const deleteBtn = template.querySelector('.btn_action_delete-card');
-  deleteBtn.addEventListener('click', (evt) => {
-    evt.target.closest('.card').remove();
-  });
-
-//Лайк карточки
-  const likeCardBtn = template.querySelector('.btn_action_like');
-  likeCardBtn.addEventListener ('click', () => {
-    likeCardBtn.classList.toggle('btn_action_like-active');
-  });
+  imgPlace.addEventListener('click', () => openImgPopup(cardData));
+  template.querySelector('.btn_action_delete-card').addEventListener('click', deleteCard);
+  template.querySelector('.btn_action_like').addEventListener('click', likeCard);
 
   return template;
 };
 
-const templatesList = initialCards.map(({name: placeName, link: imageLink}) => 
-createCard(placeName, imageLink));
-
-const renderCard = (placeName, imageLink) => {
-  cardsContainer.prepend(createCard(placeName, imageLink));
+const renderCard = (cardData) => {
+  cardsContainer.prepend(createCard(cardData));
 };
 
-cardsContainer.prepend(...templatesList);
+initialCards.forEach((cardData) => renderCard(cardData));
 
-const openImgPopup = (placeName, imageLink) => {
-  imgPopup.querySelector('.popup__place-img').src = imageLink;
-  imgPopup.querySelector('.popup__place-heading').textContent = placeName;
-  imgPopup.querySelector('.popup__place-img').alt = placeName;
+//Лайк карточки
+function likeCard(evt) {
+  evt.target.classList.toggle('btn_action_like-active');
+};
+
+//Удаление карточки
+function deleteCard(evt) {
+  evt.target.closest('.card').remove();
+};
+
+//Открыть попап с картинкой
+const openImgPopup = (cardData) => {
+  imgPopupPhoto.src = cardData.link;
+  imgPopupHeading.textContent = cardData.name;
+  imgPopupPhoto.alt = cardData.name;
   openPopup(imgPopup); 
 };
