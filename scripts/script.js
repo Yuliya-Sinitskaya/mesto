@@ -77,7 +77,6 @@ placeSaveButton.addEventListener('click', (evt) => {
 placeSaveButton.addEventListener('submit', handlePlaceFormSubmit);
 
 //Карточки для добавления
-
 const initialCards = [
   {
     name: 'Баган, Мьянма',
@@ -127,7 +126,7 @@ const createCard = (placeName, imageLink) => {
   });
 
   return template;
-}
+};
 
 const templatesList = initialCards.map(({name: placeName, link: imageLink}) => 
 createCard(placeName, imageLink));
