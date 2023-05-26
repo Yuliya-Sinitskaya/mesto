@@ -5,7 +5,6 @@ const editProfilePopup = document.querySelector('.popup_type_profile-edit');
 const profileName = document.querySelector('.profile__name');
 const profileDescription = document.querySelector('.profile__description');
 const profilePopupCloseBtn = document.querySelector('.btn_action_close-popup-profile');
-const saveButton = document.querySelector('.btn_action_save-popup');
 const profileSaveButton = document.querySelector('.btn_action_save-popup-profile');
 const addPlacePopup = document.querySelector('.popup_type_add-place');
 const placeInput = document.querySelector('.popup__input_type_place');
@@ -68,7 +67,8 @@ addPlaceBtn.addEventListener('click', () => {
 
 function handlePlaceFormSubmit(evt) {
   evt.preventDefault();
-  renderCard(placeInput.value, linkInput.value);
+  const cardData = {name: placeInput.value, link: linkInput.value};
+  renderCard(cardData);
   closePopup(addPlacePopup);
 }
 
