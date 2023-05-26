@@ -1,3 +1,4 @@
+const popupList = document.querySelectorAll('.popup');
 const nameInput = document.querySelector('.popup__input_type_name');
 const infoInput = document.querySelector('.popup__input_type_info');
 const editBtn = document.querySelector('.btn_action_profile-edit');
@@ -21,10 +22,17 @@ const cardTemplate = document.querySelector('#card-template');
 
 function openPopup(popup) {
   popup.classList.add('popup__opened');
+  document.addEventListener('keydown', escClosePopup);
 };
 
 function closePopup(popup) {
   popup.classList.remove('popup__opened');
+};
+
+function escClosePopup(evt) {
+  if(evt.key == 'Escape') {
+    closePopup(document.querySelector('.popup__opened'));
+  }
 };
 
 profilePopupCloseBtn.addEventListener('click', (evt) => {
@@ -116,3 +124,14 @@ const openImgPopup = (cardData) => {
   imgPopupPhoto.alt = cardData.name;
   openPopup(imgPopup); 
 };
+
+//Закрыть попап кликом на оверлей  
+function overlayClosePopup(evt) {
+  if (evt.target.classList.contains('popup__opened')) {
+    closePopup(evt.target);
+  }
+}
+
+popupList.forEach(popup => {
+  popup.addEventListener('click', overlayClosePopup);
+});
