@@ -6,4 +6,5 @@
   color: red;
   max-width: 358px;
   margin: 5 auto 0 auto;
+  min-height: 30px;
 }
