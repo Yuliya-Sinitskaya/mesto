@@ -58,7 +58,6 @@ function setEventListener(formElement, config) {
 
 function enableValidation(config) {
   const forms = document.querySelectorAll(config.formSelector);
-  console.log(forms);
 
   [...forms].forEach((formItem) => {
     setEventListener(formItem, config);
