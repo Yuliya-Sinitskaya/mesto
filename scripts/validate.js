@@ -10,7 +10,7 @@ function hideError(inputElement, errorElement, config) {
   inputElement.classList.remove(config.errorClass);
 }
 
-function disbaleButton(buttonElement, config) {
+function disabaleButton(buttonElement, config) {
   buttonElement.disabled = true;
   buttonElement.classList.add(config.inactiveButtonClass); 
 }
@@ -22,7 +22,7 @@ function enableButton(buttonElement, config) {
 
 function toggleButtonState(buttonElement, isActive, config) {
   if (!isActive) {
-    disbaleButton(buttonElement, config);
+    disabaleButton(buttonElement, config);
   } else {
     enableButton(buttonElement, config);
   }
