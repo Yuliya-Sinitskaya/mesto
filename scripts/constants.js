@@ -25,3 +25,12 @@ const initialCards = [
     link: 'https://images.unsplash.com/photo-1556880003-4fcd06418af3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'
   }
 ];
+
+const configFormSelector = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitBtnSelector: '.btn_action_save-popup',
+  inactiveButtonClass: 'btn_action_save-popup-disabled',
+  inputErrorClass: 'popup__input-error',
+  errorClass: 'popup__input-error-active'
+}

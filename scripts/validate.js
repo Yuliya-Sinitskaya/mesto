@@ -10,7 +10,7 @@ function hideError(inputElement, errorElement, config) {
   inputElement.classList.remove(config.errorClass);
 }
 
-function disbaledButton(buttonElement, config) {
+function disbaleButton(buttonElement, config) {
   buttonElement.disabled = true;
   buttonElement.classList.add(config.inactiveButtonClass); 
 }
@@ -22,14 +22,13 @@ function enableButton(buttonElement, config) {
 
 function toggleButtonState(buttonElement, isActive, config) {
   if (!isActive) {
-    disbaledButton(buttonElement, config);
+    disbaleButton(buttonElement, config);
   } else {
     enableButton(buttonElement, config);
   }
 }
 
 function checkInputValidity(inputElement, formElement, config) {
-  console.log(inputElement.validationMessage);
   const isInputValid = inputElement.validity.valid;
   const errorElement = formElement.querySelector(`#${inputElement.name}-error`);
   if (!errorElement) return;
@@ -62,15 +61,6 @@ function enableValidation(config) {
   [...forms].forEach((formItem) => {
     setEventListener(formItem, config);
   })
-}
-
-const configFormSelector = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitBtnSelector: '.btn_action_save-popup',
-  inactiveButtonClass: 'btn_action_save-popup-disabled',
-  inputErrorClass: 'popup__input-error',
-  errorClass: 'popup__input-error-active'
 }
 
 enableValidation(configFormSelector);
