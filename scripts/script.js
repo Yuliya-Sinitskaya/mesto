@@ -22,14 +22,15 @@ const cardTemplate = document.querySelector('#card-template');
 
 function openPopup(popup) {
   popup.classList.add('popup__opened');
-  document.addEventListener('keydown', escClosePopup);
+  document.addEventListener('keydown', closePopupByEsc);
 };
 
 function closePopup(popup) {
   popup.classList.remove('popup__opened');
+  document.removeEventListener('keydown', closePopupByEsc);
 };
 
-function escClosePopup(evt) {
+function closePopupByEsc(evt) {
   if(evt.key == 'Escape') {
     closePopup(document.querySelector('.popup__opened'));
   }
@@ -62,10 +63,6 @@ function handleProfileFormSubmit(evt) {
   closePopup(editProfilePopup);
 };
 
-profileSaveButton.addEventListener('click', (evt) => {
-  handleProfileFormSubmit(evt);
-});
-
 editProfilePopup.addEventListener('submit', handleProfileFormSubmit);
 
 //попап добавления карточки
@@ -80,11 +77,7 @@ function handlePlaceFormSubmit(evt) {
   closePopup(addPlacePopup);
 }
 
-placeSaveButton.addEventListener('click', (evt) => {
-  handlePlaceFormSubmit(evt);
-});
-
-placeSaveButton.addEventListener('submit', handlePlaceFormSubmit);
+addPlacePopup.addEventListener('submit', handlePlaceFormSubmit);
 
 //Создание карточки
 const createCard = (cardData) => {
@@ -126,12 +119,12 @@ const openImgPopup = (cardData) => {
 };
 
 //Закрыть попап кликом на оверлей  
-function overlayClosePopup(evt) {
+function closePopupByOverlay(evt) {
   if (evt.target.classList.contains('popup__opened')) {
     closePopup(evt.target);
   }
 }
 
 popupList.forEach(popup => {
-  popup.addEventListener('click', overlayClosePopup);
+  popup.addEventListener('click', closePopupByOverlay);
 });
