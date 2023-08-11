@@ -1,3 +1,7 @@
+import Card from "./Card.js";
+import { initialCards } from "./constants.js";
+import FormValidator from "./FormValidator.js";
+
 const popupList = document.querySelectorAll('.popup');
 const nameInput = document.querySelector('.popup__input_type_name');
 const infoInput = document.querySelector('.popup__input_type_info');
@@ -6,21 +10,18 @@ const editProfilePopup = document.querySelector('.popup_type_profile-edit');
 const profileName = document.querySelector('.profile__name');
 const profileDescription = document.querySelector('.profile__description');
 const profilePopupCloseBtn = document.querySelector('.btn_action_close-popup-profile');
-const profileSaveButton = document.querySelector('.btn_action_save-popup-profile');
 const addPlacePopup = document.querySelector('.popup_type_add-place');
 const placeInput = document.querySelector('.popup__input_type_place');
 const linkInput = document.querySelector('.popup__input_type_link');
 const addPlaceBtn = document.querySelector('.btn_action_add-place');
 const addPlacePopupCloseBtn = document.querySelector('.btn_action_close-popup-place');
-const placeSaveButton = document.querySelector('.btn_action_save-popup-place');
-const imgPopup = document.querySelector('.popup_type_open-img');
-const imgPopupPhoto = imgPopup.querySelector('.popup__place-img');
-const imgPopupHeading = imgPopup.querySelector('.popup__place-heading');
+export const imgPopup = document.querySelector('.popup_type_open-img');
+export const imgPopupPhoto = imgPopup.querySelector('.popup__place-img');
+export const imgPopupHeading = imgPopup.querySelector('.popup__place-heading');
 const placePopupCloseBtn = document.querySelector('.btn_action_close-popup-img');
 const cardsContainer = document.querySelector('.places-grid__container');
-const cardTemplate = document.querySelector('#card-template');
 
-function openPopup(popup) {
+export function openPopup(popup) {
   popup.classList.add('popup__opened');
   document.addEventListener('keydown', closePopupByEsc);
 };
@@ -79,44 +80,12 @@ function handlePlaceFormSubmit(evt) {
 
 addPlacePopup.addEventListener('submit', handlePlaceFormSubmit);
 
-//Создание карточки
-const createCard = (cardData) => {
-  const template = cardTemplate.content.querySelector('.card').cloneNode(true);
-  const imgPlace = template.querySelector('.card__img');
-  imgPlace.src = cardData.link;
-  template.querySelector('.card__heading').textContent = cardData.name;
-  imgPlace.alt = cardData.name;
-
-  imgPlace.addEventListener('click', () => openImgPopup(cardData));
-  template.querySelector('.btn_action_delete-card').addEventListener('click', deleteCard);
-  template.querySelector('.btn_action_like').addEventListener('click', likeCard);
-
-  return template;
-};
-
 const renderCard = (cardData) => {
-  cardsContainer.prepend(createCard(cardData));
+  const card = new Card(cardData);
+  cardsContainer.prepend(card.getView());
 };
 
 initialCards.forEach((cardData) => renderCard(cardData));
-
-//Лайк карточки
-function likeCard(evt) {
-  evt.target.classList.toggle('btn_action_like-active');
-};
-
-//Удаление карточки
-function deleteCard(evt) {
-  evt.target.closest('.card').remove();
-};
-
-//Открыть попап с картинкой
-const openImgPopup = (cardData) => {
-  imgPopupPhoto.src = cardData.link;
-  imgPopupHeading.textContent = cardData.name;
-  imgPopupPhoto.alt = cardData.name;
-  openPopup(imgPopup); 
-};
 
 //Закрыть попап кликом на оверлей  
 function closePopupByOverlay(evt) {
@@ -128,3 +97,19 @@ function closePopupByOverlay(evt) {
 popupList.forEach(popup => {
   popup.addEventListener('click', closePopupByOverlay);
 });
+
+//Валидация форм 
+const configFormValidator = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitBtnSelector: '.btn_action_save-popup',
+  inactiveBtnClass: 'btn_action_save-popup-disabled',
+  inputErrorClass: 'popup__input-error-active',
+  errorClass: 'popup__input-error'
+}
+
+const popupProfileDataValidator = new FormValidator(configFormValidator, editProfilePopup);
+popupProfileDataValidator.enableValidation();
+
+const popupPlaceDataValidator = new FormValidator(configFormValidator, addPlacePopup);
+popupPlaceDataValidator.enableValidation();
