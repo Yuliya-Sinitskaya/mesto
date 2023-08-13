@@ -42,12 +42,12 @@ function closePopupByEsc(evt) {
 const popups = document.querySelectorAll('.popup');
 popups.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
-      if (evt.target.classList.contains('popup__opened')) {
-        closePopup(popup)
-      }
-      if (evt.target.classList.contains('btn_action_close-popup')) {
-        closePopup(popup)
-      }
+    if (evt.target.classList.contains('popup__opened')) {
+      closePopup(popup)
+    }
+    if (evt.target.classList.contains('btn_action_close-popup')) {
+      closePopup(popup)
+    }
   })
 })
 
