@@ -1,13 +1,17 @@
-import { openPopup, imgPopup, imgPopupPhoto, imgPopupHeading } from "./script.js";
-
 class Card {
-  constructor(cardData) {
+  constructor(cardData, templateSelector, handleCardClick) {
     this._name = cardData.name;
     this._link = cardData.link;
+    this._templateSelector = templateSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
-    const newTemplate = document.querySelector('#card-template').content.querySelector('.card').cloneNode(true);
+    const newTemplate = document
+    .querySelector(this._templateSelector)
+    .content
+    .querySelector('.card')
+    .cloneNode(true);
     return newTemplate;
   }
 
@@ -38,9 +42,11 @@ class Card {
 };
   
   _setListeners() {
-    this._placeImg .addEventListener('click', () => this._openImgPopup());
     this._placeDeleteBtn.addEventListener('click', () => this._handleClickDeleteCard());
     this._placeLikeBtn.addEventListener('click', () => this._handleLikeCard());
+    this._placeImg.addEventListener('click', () => {
+      this._handleCardClick(this._name, this._link)
+    });
   }
 
   getView() {
