@@ -13,8 +13,7 @@
 @import url(../blocks/btn/btn.css);
 @import url(../blocks/btn/_action/_profile-edit/btn_action_profile-edit.css);
 @import url(../blocks/btn/_action/_add-place/btn_action_add-place.css);
-@import url(../blocks/places-grid/places-grid.css);
-@import url(../blocks/places-grid/__container/places-grid__container.css);
+@import url(../blocks/cards/cards.css);
 @import url(../blocks/btn/_action/_like/btn_action_like.css);
 @import url(../blocks/btn/_action/_like-active/btn_action_like-active.css);
 @import url(../blocks/footer/footer.css);

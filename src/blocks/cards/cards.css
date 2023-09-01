@@ -1,8 +1,11 @@
-.places-grid {
+.cards {
   margin: 0 auto;
+  display: grid;
   padding: 51px 0 0 0;
+  grid-template-columns: repeat(auto-fit, 282px);
+  gap: 20px 17px;
   box-sizing: border-box;
-  width: 100%;
+  max-width: 100%;
 }
 
 @media screen and (max-width: 596px) {

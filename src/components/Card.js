@@ -34,13 +34,6 @@ class Card {
     this._placeLikeBtn.classList.toggle('btn_action_like-active');
   }
 
-  _openImgPopup() {
-    imgPopupPhoto.src = this._link;
-    imgPopupHeading.textContent = this._name;
-    imgPopupPhoto.alt = this._name;
-    openPopup(imgPopup); 
-};
-  
   _setListeners() {
     this._placeDeleteBtn.addEventListener('click', () => this._handleClickDeleteCard());
     this._placeLikeBtn.addEventListener('click', () => this._handleLikeCard());

@@ -4,17 +4,16 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./pages/index.css">
   <title>Mesto</title>
 </head>
 <body class="page">
   <header class="header">
-    <img src="./images/logo.svg" alt="Логотип" class="header__logo">
+    <img src="<%=require('./images/logo.svg')%>" alt="Логотип" class="header__logo">
   </header>
   <main class="content">
     <section class="profile-container">
       <div class="profile">
-        <img class="profile__avatar" src="./images/jacques-сousteau.jpg" alt="Фотография Жак-Ив Кусто">
+        <img class="profile__avatar" src="<%=require('./images/jacques-сousteau.jpg')%>" alt="Фотография Жак-Ив Кусто">
         <div class="profile__info">
           <div class="profile__info-main">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -25,8 +24,7 @@
       </div>
       <button class="btn btn_action_add-place" type="button" aria-label="Добавить место"></button>
     </section>
-    <section class="places-grid">
-      <ul class="places-grid__container"></ul>
+    <section class="cards">
     </section>
   </main>
   <footer class="footer">
@@ -83,6 +81,5 @@
       </div>
     </li>
   </template>
-  <script type="module" src="./scripts/script.js"></script>
 </body>
 </html>
