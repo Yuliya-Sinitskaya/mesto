@@ -1,7 +1,7 @@
 import './index.css';
 import { 
   initialCards,
-} from "../components/constants.js";
+} from "../utils/constants.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import PopupWithForm from "../components/PopupWithForm.js";
@@ -33,7 +33,7 @@ const cardList = new Section({
 },
 ".cards"
 );
-cardList.renderItems();
+cardList.renderItems(initialCards);
 
 //Открытие попапа с описанием и фото
 const imagePopup = new PopupWithImage('.popup_type_open-img');
