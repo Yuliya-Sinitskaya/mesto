@@ -1,0 +1,7 @@
+.card__likes-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  max-width: 22px;
+  padding: 0;
+}
