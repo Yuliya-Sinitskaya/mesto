@@ -98,7 +98,7 @@ function deleteCard({cardId, card }) {
     .catch((err) => {
       console.log(err);
     })
-    .finally(() => deleteCardPopup.deletingBtnText());
+    .finally(() => deleteCardPopup.changeDeleteBtnText());
   })
 };
 
@@ -112,7 +112,7 @@ function editUserInfo(data) {
     .catch((err) => {
       console.log(err);
     })
-    .finally(() => userEditPopup.savingBtnText())
+    .finally(() => userEditPopup.changeSaveBtnText())
  };
  
  editBtn.addEventListener('click', () => {
@@ -142,7 +142,7 @@ function addNewPlace(data) {
     .catch((err) => {
       console.log(err);
     })
-    .finally(() => popupAddPlace.savingBtnText());
+    .finally(() => popupAddPlace.changeSaveBtnText());
  };
 
 addPlaceBtn.addEventListener('click', () => {
@@ -160,7 +160,7 @@ function editAvatar (data) {
       .catch((err) => {
         console.log(err);
       })
-      .finally(() => avatarEditPopup.savingBtnText());
+      .finally(() => avatarEditPopup.changeSaveBtnText());
    };
 
 editAvatarBtn.addEventListener('click', () => {

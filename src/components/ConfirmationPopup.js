@@ -28,7 +28,7 @@ export default class ConfirmationPopup extends Popup {
     this._cardElement = card;
   }
 
-  deletingBtnText() {
+  changeDeleteBtnText() {
     this._confirmDeleteButton.textContent = this._confirmDeleteText;
   }
 }
