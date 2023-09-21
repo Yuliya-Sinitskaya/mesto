@@ -75,16 +75,16 @@ class Card {
   }
 
   _setListeners() {
-  this._placeDeleteBtn.addEventListener('click', () => {
-    this._handleDeleteConfirmation({cardId: this._cardId, card: this});
-  });
+    this._placeDeleteBtn.addEventListener('click', () => {
+      this._handleDeleteConfirmation({cardId: this._cardId, card: this});
+    });
    
-  this._placeLikeBtn.addEventListener('click', () => {
-    this._handleLikeCard();
-  });
-  this._placeImg.addEventListener('click', () => {
-    this._handleCardClick(this._name, this._link)
-  });
+    this._placeLikeBtn.addEventListener('click', () => {
+      this._handleLikeCard();
+    });
+    this._placeImg.addEventListener('click', () => {
+     this._handleCardClick(this._name, this._link)
+    });
   }
 
   getView() {
