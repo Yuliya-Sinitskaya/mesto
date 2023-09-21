@@ -1,14 +1,15 @@
 class Card {
-  constructor({cardData, userId, handleLikeCard, handleDeleteCard}, templateSelector, handleCardClick) {
+  constructor({cardData, userId, handleLikeCard}, handleDeleteConfirmation, templateSelector, handleCardClick) {
+    this._cardData = cardData;
     this._name = cardData.name;
     this._link = cardData.link;
     this._likes = cardData.likes;
     this._userId = userId;
     this._myCard = userId === (cardData.owner ? cardData.owner._id : '');
-    this._cardId = cardData.id;
+    this._cardId = cardData._id;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
-    this._handleDeleteCard = handleDeleteCard;
+    this._handleDeleteConfirmation = handleDeleteConfirmation;
     this._handleLikeCard = handleLikeCard;
     this._myLike = this._checkLikes();
   }
@@ -26,7 +27,7 @@ class Card {
     return this._likes.some(item => item._id === this._userId);
   }
 
-  removeCard() {
+  remove() {
    this._newCard.remove();
   }
 
@@ -57,7 +58,7 @@ class Card {
     if (this._checkLikes()) {
       this.setLike();
     } else {
-      this.deleteLike();;
+      this.deleteLike();
     }
   }
 
@@ -75,9 +76,9 @@ class Card {
 
   _setListeners() {
   this._placeDeleteBtn.addEventListener('click', () => {
-    this._handleDeleteCard();
+    this._handleDeleteConfirmation({cardId: this._cardId, card: this});
   });
-
+   
   this._placeLikeBtn.addEventListener('click', () => {
     this._handleLikeCard();
   });

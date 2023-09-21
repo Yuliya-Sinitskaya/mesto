@@ -40,19 +40,19 @@ export default class Api {
     method: 'PATCH',
     headers: this._headers,
     body: JSON.stringify({
-          avatar: data.avatar
+      avatar: data.avatar
     })
   })
  .then(this._getResponse);
 }
 
-  createNewCard(data) {
+  addNewCard(data) {
    return fetch(`${this._url}/cards`, {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
-      name: data.place,
-      link: data.link
+        name: data.place,
+        link: data.link
       })
     }).then(this._getResponse);
   }
