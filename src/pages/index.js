@@ -59,7 +59,7 @@ const createCard = (cardData) => {
       }).catch((err) => { console.log(err) })
       } else {
        api.addLike(cardData._id).then((cardData) => {
-        card.setLike();
+        card.addLike();
         card.countLikes(cardData.likes);
       }).catch((err) => { console.log(err) });
     }

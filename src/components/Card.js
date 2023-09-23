@@ -11,7 +11,6 @@ class Card {
     this._handleCardClick = handleCardClick;
     this._handleDeleteConfirmation = handleDeleteConfirmation;
     this._handleLikeCard = handleLikeCard;
-    this._myLike = this._checkLikes();
   }
 
   _getTemplate() {
@@ -21,10 +20,6 @@ class Card {
     .querySelector('.card')
     .cloneNode(true);
     return newTemplate;
-  }
-
-  _checkLikes() {
-    return this._likes.some(item => item._id === this._userId);
   }
 
   remove() {
@@ -54,15 +49,20 @@ class Card {
     return this._likes.some(item => item._id === this._userId);
   }
 
+  countLikes(data) {
+    this._likes = data;
+    this._placeLikesQuantity.textContent = data.length;
+  }
+
   _getLikeStatus() {
-    if (this._checkLikes()) {
-      this.setLike();
+    if (this.isLiked()) {
+      this.addLike();
     } else {
       this.deleteLike();
     }
   }
 
-  setLike = () => {
+  addLike = () => {
     this._placeLikeBtn.classList.add('btn_action_like-active');
   }
 
@@ -70,10 +70,7 @@ class Card {
     this._placeLikeBtn.classList.remove('btn_action_like-active');
   } 
 
-  countLikes(data) {
-    this._placeLikesQuantity.textContent = data.length;
-  }
-
+ 
   _setListeners() {
     this._placeDeleteBtn.addEventListener('click', () => {
       this._handleDeleteConfirmation({cardId: this._cardId, card: this});
