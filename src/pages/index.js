@@ -8,6 +8,17 @@ import UserInfo from "../components/UserInfo.js";
 import Section from "../components/Section.js";
 import Api from '../components/Api';
 import ConfirmationPopup from '../components/ConfirmationPopup';
+import {
+  nameInput,
+  infoInput,
+  editBtn,
+  editProfilePopup,
+  addPlacePopup,
+  addPlaceBtn,
+  editAvatarPopup,
+  editAvatarBtn,
+  configFormValidator
+} from '../utils/constants.js';
 
 const api = new Api ({
   url: "https://mesto.nomoreparties.co/v1/cohort-76",
@@ -16,18 +27,6 @@ const api = new Api ({
     'Content-Type': 'application/json'
   }
 });
-
-const nameInput = document.querySelector('.popup__input_type_name');
-const infoInput = document.querySelector('.popup__input_type_info');
-
-const editBtn = document.querySelector('.btn_action_profile-edit');
-const editProfilePopup = document.querySelector('.popup_type_profile-edit');
-
-const addPlacePopup = document.querySelector('.popup_type_add-place');
-const addPlaceBtn = document.querySelector('.btn_action_add-place');
-
-const editAvatarPopup = document.querySelector('.popup_type_avatar-edit');
-const editAvatarBtn = document.querySelector('.profile__avatar-btn');
 
 const userInfo = new UserInfo({profileName: '.profile__name', profileDescription: '.profile__description', profileAvatar: '.profile__avatar'});
 const popupAddPlace = new PopupWithForm('.popup_type_add-place', addNewPlace);
@@ -76,11 +75,9 @@ const createCard = (cardData) => {
   .then(([cardData, userData]) => {
     userId = userData._id;
     cardList.renderItems(cardData);
-    cardData.forEach((item) => {
-      createCard(item);
-    });
-  userInfo.setUserInfo({name: userData.name, about: userData.about});
-  userInfo.setAvatarInfo({avatar: userData.avatar});
+
+    userInfo.setUserInfo({name: userData.name, about: userData.about});
+    userInfo.setAvatarInfo({avatar: userData.avatar});
   })
   .catch((err) => {
     console.log(err);
@@ -95,9 +92,7 @@ function deleteCard({cardId, card }) {
       card.remove();
       deleteCardPopup.close();
     })
-    .catch((err) => {
-      console.log(err);
-    })
+    .catch(console.error)
     .finally(() => deleteCardPopup.changeDeleteBtnText());
   })
 };
@@ -106,20 +101,19 @@ function deleteCard({cardId, card }) {
 function editUserInfo(data) {
   api.profileEdit(data)
     .then (res => {
-      userInfo.setUserInfo({ name: res.name, about: res.about});
+      userInfo.setUserInfo(res);
       userEditPopup.close();
     })
-    .catch((err) => {
-      console.log(err);
-    })
+    .catch(console.error)
     .finally(() => userEditPopup.changeSaveBtnText())
  };
  
  editBtn.addEventListener('click', () => {
    popupProfileDataValidator.resetValidation();
    userEditPopup.open();
-   nameInput.value = userInfo.getUserInfo().name;
-   infoInput.value = userInfo.getUserInfo().about;
+   const {about, name} = userInfo.getUserInfo()
+   nameInput.value = name;
+   infoInput.value = about;
  });
 
 
@@ -139,9 +133,7 @@ function addNewPlace(data) {
       cardList.addItem(newCardElement);
       popupAddPlace.close();
     })
-    .catch((err) => {
-      console.log(err);
-    })
+    .catch(console.error)
     .finally(() => popupAddPlace.changeSaveBtnText());
  };
 
@@ -154,29 +146,17 @@ addPlaceBtn.addEventListener('click', () => {
 function editAvatar (data) {
   api.profileAvatarEdit(data)
     .then(res => {
-      userInfo.setAvatarInfo({ avatar: res.avatar });
+      userInfo.setAvatarInfo(res);
       avatarEditPopup.close();
     })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => avatarEditPopup.changeSaveBtnText());
+    .catch(console.error)
+    .finally(() => avatarEditPopup.changeSaveBtnText());
    };
 
 editAvatarBtn.addEventListener('click', () => {
   popupAvatarEditDataValidator.resetValidation();
   avatarEditPopup.open();
 });
-
-//Валидация форм 
-const configFormValidator = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitBtnSelector: '.btn_action_save-popup',
-  inactiveBtnClass: 'btn_action_save-popup-disabled',
-  inputErrorClass: 'popup__input-error-active',
-  errorClass: 'popup__input-error'
-}
 
 const popupProfileDataValidator = new FormValidator(configFormValidator, editProfilePopup);
 popupProfileDataValidator.enableValidation();
